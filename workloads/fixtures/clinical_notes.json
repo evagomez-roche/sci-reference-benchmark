@@ -1,0 +1,22 @@
+{
+  "_comment": "100% synthetic clinical notes (no real patient data). Used as local fixtures for the deterministic LLM inference simulation.",
+  "task": "Extract adverse events (AE), seriousness and suspected drug from the clinical note and answer in JSON.",
+  "system_prompt": "You are a pharmacovigilance assistant working for a clinical safety team. Read the clinical note carefully and extract every adverse event mentioned. For each adverse event return the MedDRA preferred term, the seriousness criteria, the suspected study drug, the onset date and the outcome. Do not invent information that is not present in the note. If no adverse event is present answer with an empty list. Always answer with valid JSON following the schema provided below and never add free text outside the JSON object.",
+  "output_schema": "{\"adverse_events\": [{\"preferred_term\": str, \"serious\": bool, \"criteria\": [str], \"suspected_drug\": str, \"onset\": str, \"outcome\": str}]}",
+  "few_shot_examples": [
+    "Note: Patient 0412 on study drug RX-101 reported mild headache on day 3, resolved without treatment. Answer: {\"adverse_events\": [{\"preferred_term\": \"Headache\", \"serious\": false, \"criteria\": [], \"suspected_drug\": \"RX-101\", \"onset\": \"day 3\", \"outcome\": \"recovered\"}]}",
+    "Note: Patient 0977 hospitalised for acute pancreatitis two weeks after starting RX-205, drug withdrawn, recovering. Answer: {\"adverse_events\": [{\"preferred_term\": \"Pancreatitis acute\", \"serious\": true, \"criteria\": [\"hospitalisation\"], \"suspected_drug\": \"RX-205\", \"onset\": \"week 2\", \"outcome\": \"recovering\"}]}",
+    "Note: Routine follow-up visit for patient 1203, vitals stable, labs within range, no complaints. Answer: {\"adverse_events\": []}",
+    "Note: Patient 0558 developed grade 2 neutropenia at cycle 4 of RX-330, dose delayed one week. Answer: {\"adverse_events\": [{\"preferred_term\": \"Neutropenia\", \"serious\": false, \"criteria\": [], \"suspected_drug\": \"RX-330\", \"onset\": \"cycle 4\", \"outcome\": \"not recovered\"}]}"
+  ],
+  "notes": [
+    "Patient 2001, 64 year old female with type 2 diabetes on RX-101 since January, presented with nausea and vomiting for three days, mild dehydration treated as outpatient with oral fluids, symptoms improving at follow up call, glucose values within target, no other complaints reported by the patient or caregiver.",
+    "Patient 2002, 71 year old male with heart failure enrolled in the extension study of RX-205, admitted to hospital with worsening dyspnoea and peripheral oedema, diuretics intensified, discharged after five days, investigator considers the event possibly related to study drug.",
+    "Patient 2003, 45 year old female with rheumatoid arthritis on RX-330, reported a maculopapular rash on both forearms after the second infusion, treated with topical corticosteroids, rash resolved within ten days, infusion schedule maintained.",
+    "Patient 2004, 58 year old male with chronic kidney disease, routine visit at week 24, creatinine stable, potassium slightly elevated but within protocol limits, patient denies any new symptoms, no change in concomitant medication.",
+    "Patient 2005, 67 year old male with non small cell lung cancer on RX-412 combination therapy, experienced grade 3 diarrhoea requiring hospitalisation and intravenous fluids, study drug interrupted, event ongoing at the time of this report.",
+    "Patient 2006, 39 year old female with asthma, reported transient dizziness after the first dose of RX-101, lasted approximately thirty minutes, no intervention needed, patient continued in the study without further episodes.",
+    "Patient 2007, 76 year old female with hypertension on RX-205, fall at home with wrist fracture, emergency department visit, investigator assesses the fall as possibly related to orthostatic hypotension induced by study drug.",
+    "Patient 2008, 52 year old male with COPD, exacerbation managed with oral steroids and antibiotics, no hospitalisation, investigator considers the event unrelated to RX-330 and related to seasonal viral infection."
+  ]
+}

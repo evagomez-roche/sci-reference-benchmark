@@ -1,0 +1,14 @@
+# Python 3.12 -- no paid external APIs, no Docker daemon required.
+#
+# Internal Roche SDK (GreenLogger + CLEER_v2 + GSF patterns catalogue).
+# If it is not on your package index, install it from the workspace source:
+#   pip install ../green_sdk
+roche-green-sdk==2.0.2
+
+# Transitive dependencies of roche-green-sdk, pinned to minimums for clarity
+codecarbon>=2.3.1
+pandas>=1.3.0
+openpyxl>=3.0.0
+
+# Everything else (sqlite3, json, csv, argparse, hashlib, tempfile...) is stdlib.
+# Visual results: results/BENCHMARK_REPORT.md (plain Markdown, no extra packages).
